@@ -1,2 +1,0 @@
-﻿ACT	ID	Math
-	10	

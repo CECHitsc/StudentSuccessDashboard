@@ -1,2 +1,0 @@
-ACT	ID	ACT math
-16	20	

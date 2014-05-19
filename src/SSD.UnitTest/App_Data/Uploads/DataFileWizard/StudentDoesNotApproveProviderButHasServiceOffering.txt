@@ -1,2 +1,0 @@
-Nationality	ID	Guardian
-US	30	

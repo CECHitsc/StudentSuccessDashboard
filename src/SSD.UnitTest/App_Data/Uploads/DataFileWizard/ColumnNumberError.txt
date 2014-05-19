@@ -1,3 +1,0 @@
-Student Id	SAT	ACT
-10	100	101
-11	200	201
