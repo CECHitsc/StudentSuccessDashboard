@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<title>Student Success Dashboard</title>
+	
+	<!--  BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<!-- END BOOTSTRAP -->
+	
+</head>
+<!------------------------------------------------------------------>
+<body>
+	<section>	
+		<header>
+			<!-- NAV BAR -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				  <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SSD</a>
+				  </div>
+				  <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="wikihome.html">Wiki</a></li>
+					  <li><a href="contacts.html">Contacts</a></li>
+					</ul>
+					<!-- DROPBOX -->
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wiki Nav<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="wikihome.html">Wiki Home</a></li>
+							<li><a href="setup.html">Setup</a></li>
+							<li><a href="getstarted.html">Get Started</a></li>
+							<li><a href="security.html">Security</a></li>
+							<li><a href="technologies.html">Technologies</a></li>
+							<li><a href="solution.html">Solution</a></li>
+							<li><a href="integration.html">Integration</a></li>
+							<li><a href="#">Automating Tests</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+		</header>
+		
+		<main class="well well-lg">
+			<h1>Automating Tests</h1>
+			
+			<h3>Pre-Conditions</h3>
+				<ul>
+					<li>Make sure there are no certificate problems that might impede the tests.</li>
+					<li>Currently, all versions of Chrome and Firefox up to v.12 are supported by this automation testing application.</li>
+				</ul>
+			
+			<h3>Opening the Automated Tests Solutiuon</h3>
+				<p>In Visual Studio, open TestDriver.sln in the "automation\TestDriver" subdirectory in the package.  This should open with "TestDriver GUI" as the start-up project.  You can run in Debug mode or build it out as an .exe.</p>
+				<p>You can open the Sample_Test.swf file in a browser to see a demonstration of an example test running.</p>
+
+			<h3>The GUI</h3>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/Interface.jpg?raw=true" alt="Interface">
+				
+				<ul>
+					<li>Environment Selector – Used to select an environment to run the automated app in</li>
+					<li>Iteration Selector – Used to select how many iterations to run a particular set of tests</li>
+					<li>Test Suite Selector – Used to select a spreadsheet from which to load tests</li>
+					<li>Spreadsheet Listbox – Populated based on the selection in Test Suite Selector</li>
+					<li>This Listbox is automatically selected when a sheet in the Test Suite Selector is chosen
+						<ul>
+						<li>Tests On Sheet Listbox – List of tests that are on a particular sheet</li>
+						</ul>
+					</li>
+					<li>Play Button – Button that executes tests</li>
+					<li>Test Navigation Buttons – Buttons used to select and deselect tests</li>
+					<li>Cancel  Button – Button that exits the application</li>
+					<li>Reset Form Button – Button to reset the form to its original state</li>
+					<li>Excel Report Checkbox – Checkbox to generate an MS Excel report of the results </li>
+				</ul>
+				
+				<p>Since as shipped the only product that needs to be supported is SSD, the Product Selector is already filled in and disabled. It can be enabled by opening the solution in Visual Studio and changing the Listbox properties. Additional items can be added by adding them to the control collection. The Environment Selector and Suite Selector items are controlled by text files (Environments and Suite List respectively). To change these items merely change the items in the text files. </p>
+
+			<h3>The Spreadsheet</h3>
+				<p>The spreadsheet is located at the following location and must be there in order for the application to extract data from it:</p>
+				<p>..\Strive Testing Suite\TestDriver GUI\bin\Debug\Data Sheets\</p>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/Spreadsheet.jpg?raw=true" alt="Spreadsheet">
+				
+				<ul>
+					<li>Database Upload – Currently non-functional. For use in case you wish to store your tests in a database</li>
+					<li>Import Button – Button to import archived sheets</li>
+					<li>Clear Sheet Button – Button to clear all sheets in the spreadsheet</li>
+					<li>Export Button – Button to export this sheet to another sheet</li>
+					<li>Required Block – All fields in this block colored orange are required</li>
+					<li>Test Steps List – Block where test steps are placed</li>
+				</ul>
+			
+			<h3>How It Works</h3>
+				<p>This testing application is a small data-driven application that has been tailored to drive the Student Success Dashboard using the Selenium WebDriver. The code has been included to expand if you wish. The app controls the navigation through the application and takes inputs for each step and applies those to the app, so the data that you set up actually controls the behavior of the app. Each sheet in the enclosed workbook, except for the Master sheet and the two Note sheets, controls a certain aspect of navigating the application under test. Here is what they do:</p>
+				
+				<ul>
+					<li>Login – Login to SSD with the specified user</li>
+					<li>calendarControl – Enter a date using a calendar control</li>
+					<li>chkCheckbox – Check or uncheck a checkbox</li>
+					<li>clkButton – Click a button</li>
+					<li>inputText – Place text into a text field</li>
+					<li>navLinks – Click a link on a page</li>
+					<li>selDropdown – Select an item from a dropdown button or list</li>
+					<li>tblSelect – Select an item from a table. You can search for a specific item in a column and or search for an item in one column and select an offset column to the left or right</li>
+					<li>Wait – Wait a prescribed amount of seconds</li>
+					<li>vfyTableEntry – Verify a table entry </li>
+					<li>vfyButton – Verify a button</li>
+					<li>vfyDropdown – Verify a dropdown</li>
+					<li>vfyField – Verify a field</li>
+					<li>vfyImages – Verify an image</li>
+					<li>vfyLink – Verify a link</li>
+					<li>Logout – Logout of the application</li>
+				</ul>
+
+				<p>Tests are constructed on the Master sheet of the spreadsheet in the following format: (function name)|(line number). Here's an example:</p>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/TextExample.jpg?raw=true" alt="TextExample">
+				<p>Every action taken on the application constitutes a step. There are comments in the title of each title column of each sheet to denote what that column’s data are for. The following columns are required in each sheet:</p>
+
+				<ul>
+					<li>Login – All columns required</li>
+					<li>calendarControl - All columns required</li>
+					<li>chkCheckbox – All columns required</li>
+					<li>clkButton – All columns required</li>
+					<li>inputText – All columns required</li>
+					<li>navLinks - All columns required</li>
+					<li>selDropdown – All except the List Tag column</li>
+					<li>tblSelect – All except the Table List Xpath and Additional Verify String</li>
+					<li>Wait – All columns required</li>
+					<li>vfyTableEntry – All columns and at least one item </li>
+					<li>vfyButton - All columns and at least one item</li>
+					<li>vfyDropdown – All columns and at least one item</li>
+					<li>vfyField – All columns and at least one item</li>
+					<li>vfyImages – All columns and at least one item</li>
+					<li>vfyLink – All columns and at least one item</li>
+					<li>Logout – No information necessary</li>
+				</ul>
+
+			<h3>Example Test</h3>
+				<p>In the following screenshot, the function name corresponds to a sheet on the spreadsheet which then supplies data to the function in the application. </p>
+				<p>Here’s a test with steps from the master sheet:</p>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/TestExample.jpg?raw=true" alt="TestExample">
+				<p>The test's name is Initial Login. It is a regression test from the packaged Student Success Dashboard test suite. It has three steps:</p>
+
+				<ul>
+					<li>Login|2</li>
+					<li>vfyField|7</li>
+					<li>Logout</li>
+				</ul>
+				
+				<p>Here's the data from each sheet:</p>
+
+			<h4>Login:</h4>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/Login.jpg?raw=true" alt="Login">
+				<p>So in the Login field, the function will do the navigation and take the following inputs from the sheet:</p>
+
+				<ul>
+					<li>Username – The username to log in with. This will be input into the username field in the app</li>
+					<li>Password – The password to input into the password field</li>
+					<li>Login Type – The type of login to use (Live, yahoo, Hotmail, etc.) </li>
+				</ul>
+
+			<h4>vfyField:</h4>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/VfyField.jpg?raw=true" alt="VfyField">
+				
+				<ul>
+					<li>Field XPath – The XPath to the field being verified </li>
+					<li>Field Type – The type of field being verified. Currently these are limited to text field</li>
+					<li>isPresent – Whether the present expected to be present on the screen (Y) or not (N)</li>
+					<li>Field Name – The name of the field. Used for results</li>
+					<li>List1 – The first list item to be verified. The function will search for each item in the List field(s)</li>
+				</ul>
+				
+				<p>Basically, what this step is doing is looking at the login field and verifying that the text present matches what is expected from the spreadsheet. Here's the screen that would allow this step to pass:</p>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/LiveLogin.jpg?raw=true" alt="Live Login">
+
+			<h4>Logout:</h4>
+				<p>A simple sheet that controls logout of the application.</p>
+
+			<h3>Results</h3>
+				<p>Results are published at the conclusion of each run, pass or fail. The results can be viewed on the GUI and in the resulting file. They give an in-depth recording of each test run and its successes or failures. Here’s an example of the results for a test:</p>
+				<img class="img-responsive" src="https://github.com/CECHitsc/StudentSuccessDashboard/blob/master/wiki/Results.jpg?raw=true" alt="Results">
+			
+			<p>Return to the wiki <a href='wikihome.html'>Home</a></p>
+		</main>
+		
+		<footer>
+			<hr/>
+			&copy; University of Cincinnati ITSC 2014
+		</footer>
+	</section>	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>	
+
+</body>
+
+</html>

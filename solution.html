@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<title>Student Success Dashboard</title>
+	
+	<!--  BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<!-- END BOOTSTRAP -->
+	
+</head>
+<!------------------------------------------------------------------>
+<body>
+	<section>	
+		<header>
+			<!-- NAV BAR -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				  <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SSD</a>
+				  </div>
+				  <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="#">Wiki</a></li>
+					  <li><a href="contacts.html">Contacts</a></li>
+					</ul>
+					<!-- DROPBOX -->
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wiki Nav<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="wikihome.html">Wiki Home</a></li>
+							<li><a href="setup.html">Setup</a></li>
+							<li><a href="getstarted.html">Get Started</a></li>
+							<li><a href="security.html">Security</a></li>
+							<li><a href="technologies.html">Technologies</a></li>
+							<li><a href="#">Solution</a></li>
+							<li><a href="integration.html">Integration</a></li>
+							<li><a href="automation.html">Automating Tests</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+		</header>
+		
+		<main class="well well-lg">
+			<h1>Solution</h1>
+			<article>
+				<h2>Student Success Dashboard</h2>
+				<p>This is the base project that houses all of the Content related items.  Anything related to Views, 
+					TypeScript/JavaScript, and routing can be found in this project.  When navigating for a particular 
+					script for a View, the script folders follow the same folder directory hierarchy as the Views. For 
+					example, if you were looking for the scripts related to ~/Student/Finder, they would be located in 
+					Scripts/Views/Student/</p>
+			</article>
+			<article>
+				<h2>SSD.Integration.Database</h2>
+				<p>The Integration project is responsible for integrating the data retrieved from district databases into 
+					the Student Success Dashboard education databases.</p>
+			</article>
+			<article>
+				<h2>SSD.Azure</h2>
+				<p>This project also contains all of the Azure settings for the development environments.  Any change that 
+					needs to be made can be made in the cscfg files. This project should be set as the default StartUp project 
+					to ensure that the Azure emulator is initiated upon start of debugging. Additionally all deployments to 
+					Azure are to be made through this project via right click -&gt; publish.</p>
+			</article>
+			<article>
+				<h2>SSD.Application</h2>
+				<p>The Application project contains the controller logic for the Student Success Dashboard.  In addition to the 
+					controller logic, it also houses the logic for cleaning up Azure Blob storage.  This cleanup routine runs out 
+					of an independent Azure Worker Role and serves to sweep out old temporary files lingering in Blob storage.</p>
+			</article>
+			<article>
+				<h2>SSD.Business</h2>
+				<p>This project serves as the Business Logic Layer of the application.  It does a lot of the heavy lifting, so to 
+					speak, for the application. You can find a business object by taking the name of the Controller and matching it 
+					to its corresponding Manager. For example, ProviderController will have most of its logic stored in the 
+					ProviderManager.  Additionally, the file processing logic for the Student Success Dashboard is housed in the IO 
+					directory.</p>
+			</article>
+			<article>
+				<h2>SSD.Data</h2>
+				<p>The Data project controls the Education data contexts for the Student Success Dashboard. The Education data 
+					context contains all DbSets associated with the different entities in the Domain project.</p>
+			</article>
+			<article>
+				<h2>SSD.Domain</h2>
+				<p>The Domain project houses all of the domain objects used by the Student Success Dashboard. These map directly 
+					to what Entity Frameworks generates in the database.</p>
+			</article>
+			<article>
+				<h2>SSD.Presentation</h2>
+				<p>The Presentation project contains the ViewModel logic for the Student Success Dashboard.  This project passes 
+					back ViewModels to the Business layer which it populates and returns to the views.</p>
+			</article>
+			<article>
+				<h2>SSD.Repositories</h2>
+				<p>The Repositories project contains the means for the Student Success Dashboard to interact with the Education 
+					data contexts.  These repositories follow the repository pattern and allow for adding, updating, removing and 
+					querying of items stored within the specific domain repository.  It is also important to note that all 
+					Education repositories need to be “obtained” through the RepositoryContainer.</p>
+			</article>
+			<article>
+				<h2>SSD.Security</h2>
+				<p>The Security project contains the logic for application security, Azure Access Control Service and the SendGrid 
+					mailer client. The logic for the SendGrid Mailer can be found Nested in Security/Net.  It is important to note 
+					that under a free trial SendGrid only allows 200 emails a day so as the Student Success Dashboard project picks 
+					up steam a full version license will need to be procured. </p>
+			</article>
+			<article>
+				<h2>SSD.Common.Tests</h2>
+				<p>The Common.Tests project is simply a type library for the testing projects.</p>
+			</article>
+			<article>
+				<h2>SSD.IntegrationTest</h2>
+				<p>The IntegrationTest project is designated for all integration tests that are desired to adequately test the Student 
+					Success Dashboard application. These tests check to make sure functions work across the system rather than focus on 
+					one piece of small functionality. They use a temporary database on localDB.</p>
+			</article>
+			<article>
+				<h2>SSD.UnitTest</h2>
+				<p>The UnitTest project is for all unit tests that are used for the Student Success Dashboard.  As the development team 
+					adopted a TDD approach in designing the Student Success Dashboard, we wrapped functionality with appropriate unit 
+					tests.  By utilizing TDD, the team not only reduced potential coding errors but also increased refactoring confidence 
+					by having a testing framework to fall back on to ensure that any potential refactoring still maintains the business 
+					logic integrity.  Currently the UnitTest project is utilizing MS Test and Rhino Mocks.</p>
+			</article>
+			<article>
+				<h2>Layer Diagram</h2>
+				<p>With Visual Studio Ultimate edition you can use the SSD.Models project which has a System.layerdiagram file.  This 
+					validates project references to satisfy the following architecture.  This validation can run as part of the build process.</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/a12c6071ec61b1fa0aa254ada26a302d8a536353/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f53797374656d4469616772616d2e706e67"/> 
+			</article>
+			<p>Return to the wiki <a href='wikihome.html'>Home</a></p>
+		</main>
+		
+		<footer>
+			<hr/>
+			&copy; University of Cincinnati ITSC 2014
+		</footer>
+	</section>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<title>Student Success Dashboard</title>
+	
+	<!--  BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<!-- END BOOTSTRAP -->
+	
+</head>
+<!------------------------------------------------------------------>
+<body>
+	<section>	
+		<header>
+			<!-- NAV BAR -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				  <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SSD</a>
+				  </div>
+				  <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="wikihome.html">Wiki</a></li>
+					  <li><a href="contacts.html">Contacts</a></li>
+					</ul>
+					<!-- DROPBOX -->
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wiki Nav<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="wikihome.html">Wiki Home</a></li>
+							<li><a href="setup.html">Setup</a></li>
+							<li><a href="#">Get Started</a></li>
+							<li><a href="security.html">Security</a></li>
+							<li><a href="technologies.html">Technologies</a></li>
+							<li><a href="solution.html">Solution</a></li>
+							<li><a href="integration.html">Integration</a></li>
+							<li><a href="automation.html">Automating Tests</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+		</header>
+		
+		<main class="well well-lg">
+			<h1>Get Started</h1>
+			<p>After you've completed the <a href='setup.html'>Setup</a>, this page will help walk you 
+				through getting the application up and running. There are a variety of tasks you will 
+				need to complete to fully setup your system for local development once you’ve downloaded it.</p>
+			<article>
+				<h2>Running Locally in Azure</h2>
+				<p>You need to make sure that the local development address (127.0.0.1) is set up in Azure ACS. To 
+					confirm this:</p>
+				<ol>
+					<li>Navigate to the Azure Management Portal</li>
+					<li>Click Active Directory and go to the Azure Control Namespaces tab.</li>
+					<img class="img-responsive" src="https://camo.githubusercontent.com/14d9aee5cbcb297013a44de280c2dd96c420598b/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f4163735461622e706e67"/>
+					<li>Select the namespace corresponding to your local environment then the Manage icon.</li>
+					<li>Click the Relying party applications button on the left side and ensure that your development 
+						environments are set up:</li>
+				</ol>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/419068a11fa6c923c7f15f08d77c13faf33d8255/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f617a7572654c6f63616c2e6a7067"/>
+			</article>
+			<article>
+				<h2>Azure Service Configuration Files</h2>
+				<p>In order to be able to gain access to the running application you will need to ensure an email 
+					address you have access to is added to the AdministratorEmailAddresses setting in the ConfigurationSettings 
+					element of the cloud configuration file. For the local environment, this is the "ServiceConfiguration.Local.cscfg" 
+					file.</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/7fc0b193b817128cd95d0f462df7df3c14f97ef9/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f617a757265436f6e6669672e6a7067"/>
+				<p>This will allow you to setup the initial Data Admin user who can then administer the application. A user 
+					who registers, and confirms, one of the AdministratorEmailAddresses has the ability to manage user roles, 
+					including himself.</p>
+			</article>
+			
+			<article>
+				<h2>Visual Studio</h2>
+				<p>You must always remember to run Visual Studio as Administrator. The Azure Emulator requires elevated rights 
+					in order to function properly. Some things to take note of:</p>
+				<ul>
+					<li>Before running the solution you need to make sure you've enabled the NuGet Package Manager to automatically 
+						download files and updates it doesn't already have. This can be done by going to Tools -> Library Package Manager -> 
+						Package Manager Settings and then clicking "Allow NuGet to download missing packages".</li>
+					<img class="img-responsive" src="https://camo.githubusercontent.com/a9d179d3cc27158223a32b23a607a88df702e87a/68747470733a2f2f6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f626c6f622f6d61737465722f77696b692f7061636b6167654d616e616765722e6a70673f7261773d74727565"/>
+					<li>Another thing to take note of is that some machines have problems with running the post-build event that attaches 
+						the certificate to the project such as this one:</li>
+				</ul>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/96b5662d27da39d7c8023297fba6fc937aeb6ed2/68747470733a2f2f6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f626c6f622f6d61737465722f77696b692f6275696c644572726f722e6a70673f7261773d74727565"/>
+				<p>This can be fixed by opening the "Applications" folder and right clicking the "StudentSuccessDashboard" solution and 
+					navigating to its properties. From there select the "Build Events" tab and remove the "my" keyword from the 
+					Post-build event command line.</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/a763e986328ac9c66c2a0b663a6eaaa43c25b204/68747470733a2f2f6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f626c6f622f6d61737465722f77696b692f6275696c644576656e742e6a70673f7261773d74727565"/>
+			</article>
+
+			<article>
+				<h2>Running the Application for the First Time</h2>
+				<p>Once the steps above are complete, follow these steps to get the development environment up and running for the first time.</p>
+				<ul>
+					<li>Run the solution with the SSD.Azure project as the Start Up project. Because you are not logged in, you will land on 
+						the Login page, which is the main landing page for unauthenticated users</li>
+					<img class="img-responsive" src="https://camo.githubusercontent.com/73ba6abdcc5969a14b0aba67a3d7add118d15ae0/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f686f6d65706167652e6a7067"/>
+					<li>Log in using the identity provider of your choice and you will be redirected to the Single Sign-On log in experience 
+						for that identity provider. Note that the identity provider buttons are created dynamically based on the configuration 
+						of the relying party associated with the local development realm. Each identity provider associated with that relying 
+						party gets a button.</li>
+					<li>Upon first log in you will be greeted by a profile registration page. The application requires the creation of a valid 
+						User Profile. This includes a valid email address. Your account will not be activated until you confirm that your email
+						address is indeed valid. NOTE: The Gmail and Yahoo! identity providers can deliver the display name and email address 
+						automatically with the default rule group. If the email is accepted, no confirmation is necessary, however, the user is 
+						free to use a different email address.</li>
+					<img class="img-responsive" src="https://camo.githubusercontent.com/a2015f388402d7f77d6df8b023fa3a1081eacb33/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f757365724163636f756e742e6a7067"/>
+					<li>Once you have created your user account, assuming that you have setup your email address properly as described in the <strong>Azure 
+						Service Configuration Files</strong> section above, you should be able to navigate to Manage User Roles within the Admin drop-down navigation 
+						menu. From the data table, select your name and click the “+ Create New Activation” button. Setup yourself with whichever role 
+						you prefer and save your activation. If you simply want to explore the system the best role for this would be Data Admin, which has 
+						rights to view all content on the application.</li>
+					<img class="img-responsive" src="https://camo.githubusercontent.com/c2c55ab7c2acd9f02ef664d759aa5add361c5960/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f7573657241637469766174652e6a7067"/>
+					<p><i>NOTE</i>: When running the application using a Debug build, the database that is created for you is prepopulated with some sample data to test 
+						with. This data does not get created when running a Release build.</p>			
+			</article>
+			
+			<p>Return to the wiki <a href='wikihome.html'>Home</a>.</p>
+
+		</main>
+		
+		<footer>
+			<hr/>
+			&copy; University of Cincinnati ITSC 2014
+		</footer>
+	</section>	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+	
+</body>
+
+</html>

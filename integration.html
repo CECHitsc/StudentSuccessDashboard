@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<title>Student Success Dashboard</title>
+	
+	<!--  BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<!-- END BOOTSTRAP -->
+	
+</head>
+<!------------------------------------------------------------------>
+<body>
+	<section>	
+		<header>
+			<!-- NAV BAR -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				  <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SSD</a>
+				  </div>
+				  <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="wikihome.html">Wiki</a></li>
+					  <li><a href="contacts.html">Contacts</a></li>
+					</ul>
+					<!-- DROPBOX -->
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wiki Nav<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="wikihome.html">Wiki Home</a></li>
+							<li><a href="setup.html">Setup</a></li>
+							<li><a href="getstarted.html">Get Started</a></li>
+							<li><a href="security.html">Security</a></li>
+							<li><a href="technologies.html">Technologies</a></li>
+							<li><a href="solution.html">Solution</a></li>
+							<li><a href="#">Integration</a></li>
+							<li><a href="automation.html">Automating Tests</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+		</header>
+		
+		<main class="well well-lg">
+			<h1>Summary</h1>
+			<article>
+				<h2>Why Needed</h2>
+				<p>The Student Success Dashboard (SSD) is an application that connects students with their school information and also with their service information from service providers. Therefore it is critical to have an accurate and updated list of students from schools along with important details for the students and related schools information. This information is not part of SSD and is maintained in what’s called Student Information Systems (SIS) at schools.</p>
+			</article>
+			
+			<article>
+				<h2>What It Is</h2>
+				<p>To get the needed student and school information for SSD and also allow periodic updates of that data, data has to be extracted, translated and loaded from SIS systems into SSD. This is accomplished via the integration layer of SSD. The integration layer is designed to allow schools to set up their own migration processes with their SIS systems and write directly to database tables that act as queue for new data. </p>
+			</article>
+			
+			<article>
+				<h2>How It Works</h2>
+				<p>The integration layer is a set up as standalone tables in SQL Azure that act as queues that can be processed independently. These queue allow anything with proper access to insert student, school, teacher and class information from external systems like a SIS. This will typically be done via an ETL like tool or application.</p>
+				<p>Schools need to design and build their own ETL processes to extract school, student, teacher and class information from their student information systems (SIS) and insert into the Queue tables in SSD (see Figure 1 - Extract, Translate and Load School Data into SSD below).</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/b9b67ec6ffe58d939f8ce6d5fe0e307bf5d833e4/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f45544c50726f636573732e706e67" alt="ETLProcess" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/ETLProcess.png"><p><strong>FIGURE 1 - EXTRACT, TRANSLATE AND LOAD SCHOOL DATA INTO SSD</strong></p>
+				<p>After data is loaded from schools SIS system, it needs to be “merged” with existing SSD data. Identity and relationships also need to be maintained. This requires more complex processing and has to be done in certain order to ensure dependencies exist when getting merged. For example, students have a school dependency and therefore schools have to be loaded first for foreign keys to be correctly set up with their SSD identifiers.</p>
+				<p>To accomplish this, stored procedures have been designed and built to properly handle taking data loaded into queues and inserting and updating them properly into SSD data tables. After the ETL process is completed loading the queues, a stored called “ProcessQueues” needs to be executed to insert and update the new data into SSD properly. This stored procedure calls several other stored procedures in order to insert new instances or update existing instances of corresponding school information.</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/b65738353bd7589e67a9c7285b59c306aadc7380/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f496e746567726174696f6e50726f636573732e706e67" alt="IntegrationProcess" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/IntegrationProcess.png"><p><strong>FIGURE 2 - SSD INTEGRATION PROCESS</strong></p>
+				<p>The merge process is a bulk processing mechanism that inserts data much faster than regular inserts and updates. It is designed to evaluate all data in one statement and determine each record separately. For each record, if new the record will be inserted, if exists based on the entity key than will be updated. The stored procedures also determine specific internal SSD identifiers and convert SIS keys to SSD identifiers.</p>
+			</article>
+			
+			<article>
+				<h2>Integration Layer Design</h2>
+				<p>The integration layer is a basic information system that accepts data as standalone instances (objects) and processes each individually into SSD tables. This allows SSD to be developed independently of the data being uploaded and also enforces a standard interface for SSD data being uploaded. There are several key aspects to the Integration layer design; Queues and ETL, Stored Procedures and SSD Loading.</p>
+			</article>
+			
+			<article>
+				<h3>Queues and ETL</h3>
+				<p>Getting updated school and student information into SSD is accomplished via some ETL process being built by school and loading the Queue tables in SSD (see Figure 3 - SSD Queue Tables for Integration Below). Each table is a standalone table with a “key” that is the unique identify as it is used and maintained in the source system. SSD maintains its own identity for these business objects. Therefore, these keys are critical to ensure uniqueness and identity in SSD on incremental uploads and maintain relational dependencies.</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/96c94f10bcf1f5949463882b0edc3c891ee2e0b8/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f51756575655461626c65732e706e67" alt="QueueTables" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/QueueTables.png"><p><strong>FIGURE 3 - SSD QUEUE TABLES FOR INTEGRATION</strong></p>
+			</article>
+			
+			<article>
+				<h3>Stored Procedures and Business Logic</h3>
+				<p>The SSD tables being updated are object oriented designed tables that are normalized, have their own identifier and also have constraints and indexes to properly support the SSD application (see Figure 4 below).</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/123b488cca2f67eb43104c6e97ac40d9509fd1fe/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f5353445461626c65732e706e67" alt="SSDTables" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/SSDTables.png"><p><strong>FIGURE 4 - SSD TABLES BEING UPDATED FOR INTEGRATION</strong></p>
+				<p>To get loaded data into SSD properly requires certain rules, lookups and relationships to be managed. The SSD integration layer is designed to allow data to be loaded at any time and also handle large amounts of data. The loaded data is intended to represent standalone business objects and then be inserted and updated into the normalized SSD database with its own constraints and rules. To simplify the integration process, all loaded data is expected to be translated properly to needed data types prior to loading.</p>
+				<p>There are set of stored procedures that handle each queue business entity separately that either inserts new instances of the “key” identifier or updates existing instances when the “key” matches. For entities such as student that have a school relationship for the school the student is in, a special lookup has to be done to determine what the school SSD identifier is for the list school key for that student. Table 1 below is a list of the stored procedures used in the integration process.</p>
+				<p><em>ProcessQueues</em> – Main stored procedure that call all integration stored procedures in correct order:</p>
+				<ol class="task-list">
+					<li>MergeSchoolToSSD – Stored procedure to merge loaded school data into SSD properly.</li>
+					<li>MergeTeacherToSSD – Stored procedure to merge loaded teacher data into SSD properly.</li>
+					<li>MergeStudentToSSD – Stored procedure to merge loaded student data into SSD properly.</li>
+					<li>MergeClassToSSD – Stored procedure to merge loaded class data into SSD properly.</li>
+					<li>MergeStudentClassesToSSD – Stored procedure to merge loaded data for classes for specific student into SSD properly.</li>
+				</ol>
+			</article>
+			
+			<article>
+				<h3>Bulk Inserting and Merging</h3>
+				<p>To handle large amounts of data for larger schools, the integration layers uses a bulk inserting mechanism as opposed to processing individually records. This is accomplished via the SQL merge statement. This dramatically improves speed and reduces database processing that helps limit the impact to the SSD application. The cost of doing it this way makes it a very ridged and fragile process. One error will cause all others records to fail and require schools to determine what broke and fix it and try again.</p>
+			</article>
+			
+			<article>
+			<h2>Integration Development Environment</h2>
+			<p>The integration layer is a separate project in the SSD downloaded solution. It is a Visual Studio 2012 database project and has been designed and implemented as a standalone solution with SSD. The integration project itself is named “Strive.Integration.Database”. It is broken up into several folders to better organize the different parts of the integration layer and development (See Figure 5 - VS Project).</p>
+			<img class="img-responsive" src="https://camo.githubusercontent.com/34dcbdd3e39d2976bb809c5bb4e067d2c6b60e2c/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f446174616261736550726f6a6563745374727563747572652e706e67" alt="DatabaseProjectStructure" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/DatabaseProjectStructure.png"><p><strong>FIGURE 5 - VS PROJECT</strong></p>
+			<ul>
+				<li>dbo – Optional tables for testing (see Setting up Integration Testing)</li>
+				<li>Queue – Tables for the queues</li>
+				<li>Schemas – Schemas for separating SSD and Queues</li>
+				<li>Scripts – SQL scripts for installing and testing.</li>
+				<li>SSD – Copy of actual SSD tables. These are only a reference and used to replicate what SSD tables are for developing stored procedures.</li>
+				<li>StoredProcedures – The stored procedures used in integration process</li>
+				<li>TestData – Real test data used to test and verify the integration layer.</li>
+			</ul>
+			</article>
+			
+			<article>
+				<h2>Installation and Setup</h2>
+				<h3>Prerequisites</h3>
+				<p>The integration layer for SSD has been built and tested on Azure SQL and SQL Server 2012. Both of these database platforms support the SQL Merge statement, which is key aspect to the integration architecture for bulk uploads. </p>
+				<p>Prior to installing and setting up the integration layer, SSD needs to be installed along with all the SSD tables and database. After that is complete, you can then install the integration layer as outlined below. </p>
+				<p>In order to install and setup the integration layer, you will also need to be able to access the database and able to run queries against it. This can be done via SQL Server Management Studio (SSMS) or Azure portal. You will need privileges to add new entities to the SSD database.</p>
+			</article>
+			
+			<article>
+				<h3>Installing the Integration Layer</h3>
+				<p>After installing SSD successfully, the following steps are needed to install and setup the integration layer:</p>
+				<ol>
+					<li>Set up query window via SSMS or your Azure Portal for SSD database</li>
+					<li>Open SQL Script file “Install.sql” in the integration project in Scripts folder.</li>
+					<li>Copy whole script and paste into query window.</li>
+					<li>Execute query and ensure runs successfully.</li>
+					<li>Verify 6 tables for Queue Schema are added (see Figure 3 - SSD Queue Tables for Integration)</li>
+					<li>Verify 5 Stored Procedures are also created (see Table 1 - List of Integration Stored Procedures)</li>
+				</ol>
+				<p>You Integration layer should now be installed and ready to go.</p>
+			</article>
+			
+			<article>
+				<h3>Extract, Translate and Load the Integration Layer</h3>
+				<p>Each school is required to design, build, implement and maintain their own ETL solution for migrating SIS data to SSD. All needed SSD data needs to be extracted from the SIS source system. This can be in whatever format and process the school deems necessary. This data than needs to be separated into the 5 business object queues and translated to data types necessary for each queue. Lastly, the extracted and translated data needs to be loaded into the queues directly and then the “ProcessQueues” stored procedure needs to be called.</p>
+			</article>
+			
+			<article>
+				<h2>Development and Debugging</h2>
+				<p>To be able to extend, customize of fix anything with integration layer, you will need to set up your own development environment and tools.</p>
+			</article>
+			
+			<article>
+				<h3>Setting up Development Environment</h3>
+				<p>The integration layer for SSD has been built with Visual Studio 2012 and is a database project within the SSD solution. To make any changes to the integration layer and to test those changes will require Visual Studio 2012 to be installed along with SQL Server Manager Studio (SSMS) 2012. Also, a SSD database will need to be successfully installed and setup on Azure SQL or SQL Server 2008 R2 or later.</p>
+				<p>The integration layer is a project is called ”Strive.Integration.Database” in the overall SSD solution. Most of the projects contains the tables that are used in the integration process. There are also testing entities to help debug and test any changes make.</p>
+				<p>In the Scripts folder is the Install script for installation, along with an install script for testing objects (InstallTestObjects.sql) and also separate file for useful SQL scripts used in testing.</p>
+				<p>The stored procedures described above are all contained in the Stored Procedures folder. They are designed to be deployed via the schema compare method described below or directly via alter procedure script. Each stored procedure has commented out Alter Procedure statement that can be copied and used for updates.</p>
+				<p>Test data has also been included for each business objects. The test data is stored in an excel file in TestData Folder. There is validated data for 10,000 students, 100 schools, 750 teachers, 1000 classes and 50,000 student classes. Five classes per each student.</p>
+			</article>
+			
+			<article>
+				<h2>Deploying Changes</h2>
+				<p>The recommended way to deploy changes to an existing SSD database is to use the “Schema Compare” method on the database project. To use this method, right click on the project and select “Schema Compare”. A new tab will pop up and ask for target database. You can select which “source” database you are going to be updating. After the database has been connected, you then need to “Compare” and select the entities you want updated and then “Update” to deploy them.</p>
+			</article>
+			
+			<article>
+				<h2>Setting up Integration Testing</h2>
+				<p>During development of SSD Integration layer, several entities where created to help with testing and resetting. This includes simple test tables that mimic the SSD Queues and can be populated with the test data. The idea is that when the integration process runs (ProcessQueues Stored Procedure), all the test data is moved from the queues to the SSD tables. To rerun the process would require resetting everything which includes removing the data in SSD tables and also repopulating the queues. To simplify this process, the testing tables were created to store the test data and several SQL scripts were added to remove SSD data and reload the queue tables.</p>
+				<p>To install the testing tables, there is a special install script called “InstallTestObjects” in the Scripts folder. Just run that script in a query window to install the table for testing shown in Figure 6 below.</p>
+				<img class="img-responsive" src="https://camo.githubusercontent.com/34dcbdd3e39d2976bb809c5bb4e067d2c6b60e2c/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f446174616261736550726f6a6563745374727563747572652e706e67" alt="DatabaseProjectStructure" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/DatabaseProjectStructure.png"><p><strong>FIGURE 6 - OPTIONAL TESTING TABLES</strong></p>
+			</article>
+			
+			<article>
+				<h3>Adding Test Data</h3>
+				<p>The test data is all located in an MS Excel file called “SSD-TestData-All.xlsx” in TestData folder. Each business entity queue has it’s own tab in the MS Excel file. To use this data will require the data to be uploaded to the new test tables created above.</p>
+			</article>
+			
+			<article>
+				<h3>Testing and Resetting</h3>
+				<p>Several scripts have been included to make testing easier. In the “UsefulScripts.sql” file in Scripts folder, there are several scripts that can be used for testing. The first set of scripts create a report of the number of records in SSD, Queues and test tables for each business entity.</p>
+				<p>The second set of scripts copies data from test tables to the queues. This allows a 1 time upload of test data and makes it much easier to reload queues and test. That last set of scripts clears our SSD data. This is optional depending if want to test inserting or updating.</p>
+			</article>
+			
+			<article>
+				<h2>Extending the Integration Layer</h2>
+				<p>Existing entities include school, teacher, student, classes and student classes. These are currently managed by corresponding key for each object. Add fields for these entities and keeping these keys for identity is the simplest way to extend the integration layer and add additional information to SSD.</p>
+				<p>To add fields to existing entities, the following needs to happen:</p>
+				<ol>
+					<li>Add fields to existing SSD tables in database (see Figure 4 - SSD Tables being Updated for Integration)</li>
+					<li>Add same fields to integration queue tables ( Figure 3 - SSD Queue Tables for Integration)</li>
+					<li>Update SSD Schema in Visual Studio Integration Project
+					<ol type='I'>
+						<li>Right click on Project (see figure)</li>
+						<img class="img-responsive" src="https://camo.githubusercontent.com/7eea71e92e7cd2d753dc117105e15ce80e87ff35/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f536368656d61436f6d70617265436f6e746578744d656e752e706e67" alt="SchemaCompareContextMenu" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/SchemaCompareContextMenu.png">
+						<li>Select “Schema Compare”</li>
+						<li>In SchemaCompare tab, for source add database updated in steps 1 and 2</li>
+						<li>Select current project as target.</li>
+						<li>Select “Compare” button.</li>
+						<li>Only select tables updated in steps 1 and 2</li>
+						<li>Select “update”. Integration Project should now have changes</li>
+					</ol>
+					</li>
+					<li>Update each stored procedure to add new fields for each entity. (See Table 1 - List of Integration Stored Procedures)</li>
+				</ol>
+			</article>
+			<p>Return to the wiki <a href='wikihome.html'>home</a>.</p>
+		</main>
+		
+		<footer>
+			<hr/>
+			&copy; University of Cincinnati ITSC 2014
+		</footer>
+	</section>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<title>Student Success Dashboard</title>
+	
+	<!--  BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- END BOOTSTRAP -->
+	
+</head>
+<!------------------------------------------------------------------>
+<body>
+	<section>	
+		<header>
+			<!-- NAV BAR -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				  <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SSD</a>
+				  </div>
+				  <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="#">Wiki</a></li>
+					  <li><a href="contacts.html">Contacts</a></li>
+					</ul>
+					<!-- DROPBOX -->
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wiki Nav<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="wikihome.html">Wiki Home</a></li>
+							<li><a href="setup.html">Setup</a></li>
+							<li><a href="getstarted.html">Get Started</a></li>
+							<li><a href="security.html">Security</a></li>
+							<li><a href="#">Technologies</a></li>
+							<li><a href="solution.html">Solution</a></li>
+							<li><a href="integration.html">Integration</a></li>
+							<li><a href="automation.html">Automating Tests</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+		</header>
+		
+		<main class="well well-lg">
+			<h1>Technologies</h1>
+
+			<article>
+				<h2><a href='http://www.typescriptlang.org'>TypeScript</a></h2>
+				<p>All front-end code is implemented in TypeScript. This is because TypeScript allows 
+					for strongly typed JavaScript and an easy transition for C#/.NET developers due to 
+					its allowance for object oriented programming through the use of Classes, Interfaces, 
+					Typing and Modules. The Student Success Dashboard was developed using TypeScript 0.9.0.1.</p>
+			</article>
+			<article>
+				<h2><a href='http://jquery.com'>jQuery</a></h2>
+				<p>A strong knowledge base in this technology will be essential for maintaining and 
+					extending the current work. All front end logic can be found within the 
+					StudentSuccessDashboard project in the Applications folder. Within the StudentSuccessDashboard 
+					project all JavaScript/TypeScript can be found in the Scripts folder. Front-end code 
+					corresponding to a particular page on the site will be in a View folder inside of the 
+					Scripts folder following the MVC path convention. As an example, ~/Student/Finder 
+					corresponds to Scripts/Views/Student/.</p>
+			</article>
+			<article>
+				<h2><a href='http://www.datatables.net'>jQuery Data Tables</a></h2>
+				<p>We have decided to use jQuery DataTables to keep the application lightweight and responsive. 
+					All DataTable code is broken down into three separate TypeScript files.</p>
+				<ul>
+					<li><strong>DataTable.ts</strong></p>
+				<p>Each DataTable is backed by a class that extends a base DataTable class containing 
+					CreateColumns, Initalize and Refresh functions.</p>
+					<li><strong>Filter.ts</strong></li>
+				<p>When the DataTable has filters, they are handled by a subclass of this type. All 
+					Filters should implement the Initialize, PushToArray and ToJson functions.</p>
+					<li><strong>Selector.ts</strong></li>
+				<p>When the DataTable has selectors, they are handled by subclass of this type. This 
+					class contains the Remove, Add, Reset and SetSelections functions which perform 
+					actions on an internally managed string array that tracks the selections.</p>
+				</ul>	
+			</article>
+
+			<article>
+				<h2><a href='http://qunitjs.com'>QUnit</a></h2>
+				<p>Front-end unit testing is handled by the QUnit framework. Thanks to Chutzpah, 
+					these unit tests can be seen within the Test Explorer in Visual Studio. All front-end 
+					tests will be stored in the same directory as the piece of front-end logic they are 
+					testing. Additionally, all front-end tests will have the suffix of Test.ts.</p>				
+			</article>
+			<article>
+				<h2><a href='http://chutzpah.codeplex.com'>Chutzpah</a></h2>
+				<p>Chutzpah is a front-end test automation tool that allows for running the QUnit tests 
+					within the Visual Studio Test Explorer. Chutzpah can be downloaded through the Visual 
+					Studio Extensions and Updates manager.</p>
+			</article>
+			<article>
+				<h2>Web Essentials</h2>
+				<p>Web Essentials provides a variety of front-end capabilities. The primary use for it in 
+					the Student Success Dashboard is auto-compiling your TypeScript files into JavaScript files 
+					hen you save (Ctrl + s). (Note - This capability is built into Visual Studio 2013.) Like 
+					Chutzpah, you can download Web Essentials through the Visual Studio Extensions and Updates manager.</p>		
+			</article>
+			<article>
+				<h2><a href='http://azure.microsoft.com/en-us'>Azure</a></h2>
+				<p>Windows Azure is the cloud computing platform offered by Microsoft. By choosing to utilize Azure, 
+					the Student Success Dashboard application now has the ability to scale as the user base grows. 
+					We've also taken advantage of a number of service offerings such as Access Control Service 
+					which simplified development and maintenance.</p>				
+			</article>
+			<article>
+				<h2><a href='http://www.asp.net/mvc'>ASP.NET MVC</a></h2>
+				<p>ASP.NET MVC is a technology that forces separation of concerns on web applications. MVC aligned 
+					well with the TDD practices adopted by the development team. It also yielded a more lightweight 
+					and efficient application.</p>				
+			</article>
+			<article>
+				<h2><a href='http://docs.castleproject.org/Default.aspx?Page=MainPage&NS=Windsor&AspxAutoDetectCookieSupport=1'>Castle Windsor</a></h2>
+				<p>Castle Windsor is an Inversion of Control framework that allows for run-time Dependency Injection. 
+					The main rationale for Castle Windsor is because it allows a greater allowance for the application 
+					to be easily unit tested and simplifies the TDD process.</p>
+			</article>
+			<article>
+				<h2><a href='http://msdn.microsoft.com/en-us/data/ef.aspx'>Entity Framework</a></h2>
+				<p>Entity Framework is Microsoft’s recommended Object Relational Mapper for applications. The Student 
+					Success Dashboard uses the Code First approach of Entity Framework. Code First was used because the 
+					application was a green-field project. Code First allowed us to develop Plain Old CLR Objects that 
+					represent the underlying Data Model. This allowed us to focus on application code rather than the 
+					database. Additionally, the data migrations capability allows for versioning releases and syncing 
+					up the schema.</p>
+			</article>
+			<article>
+				<h2><a href='http://azure.microsoft.com/en-us/documentation/articles/storage-whatis-account/'>Azure Storage Accounts</a></h2>
+				<h3>Blob</h3>
+				<p>In the context of the Student Success Dashboard, Blob storage is being used primarily as a data store 
+					for file processing. Because Azure is a distributed system we can’t rely on using the file system since 
+					we can’t ensure that a user will be working on the same web role instance through their entire session. 
+					Azure Blob Storage is a distributed data store accessible across all web role instances.</p>
+				<h3>Table</h3>
+				<p>The Windows Azure Diagnostics module is configured, by default, to output tracing information to table storage.</p>				
+			</article>
+			<article>
+				<h2><a href='http://azure.microsoft.com/en-us/documentation/articles/active-directory-dotnet-how-to-use-access-control/'>Azure Access Control Service</a></h2>
+				<p>Azure ACS is an authentication service that integrates third party identity providers with your application. 
+					ACS allows you to add Live, Google, Yahoo, and/or Facebook to Student Success Dashboard as identity providers.</p>
+			</article>
+
+			<p>Return to the wiki <a href='wikihome.html'>Home</a></p>
+		</main>
+		
+		<footer>
+			<hr/>
+			&copy; University of Cincinnati ITSC 2014
+		</footer>
+	</section>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+	
+</body>
+
+</html>

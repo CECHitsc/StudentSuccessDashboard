@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<title>Student Success Dashboard</title>
+	
+	<!--  BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<!-- END BOOTSTRAP -->
+	
+</head>
+<!------------------------------------------------------------------>
+<body>
+	<section>	
+		<header>
+			<!-- NAV BAR -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				  <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SSD</a>
+				  </div>
+				  <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="wikihome.html">Wiki</a></li>
+					  <li><a href="contacts.html">Contacts</a></li>
+					</ul>
+					<!-- DROPBOX -->
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wiki Nav<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="wikihome.html">Wiki Home</a></li>
+							<li><a href="#">Setup</a></li>
+							<li><a href="getstarted.html">Get Started</a></li>
+							<li><a href="security.html">Security</a></li>
+							<li><a href="technologies.html">Technologies</a></li>
+							<li><a href="solution.html">Solution</a></li>
+							<li><a href="integration.html">Integration</a></li>
+							<li><a href="automation.html">Automating Tests</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+		</header>
+		
+		<main class="well well-lg">
+			<h1>Setup</h1>
+			
+			<h2>Prerequisites</h2>
+			<ul>
+				<li>Latest Azure SDK</li>
+				<li>Azure Subscription</li>
+				<li>Visual Studio 2012 or 2013 (2010 may work but is untested. 
+					Ultimate is required for architecture models)</li>
+				<li>Chutzpah Visual Studio Extension (Javascript testing integration)</li>
+				<li>Web Essentials 2012 Visual Studio Extension (Not required for VS 2013)</li>
+				<li>Typescript SDK (Not required for VS 2013)</li>
+			</ul>
+			
+			<h2>Setting up Azure</h2>
+			<p>Before deploying to Azure, you’ll need to set up your subscription with all 
+				necessary services. Before continuing with this setup guide, ensure that you 
+				have a valid Azure subscription and that you are logged in to the Management Portal.</p>
+			
+			<h2>Cloud Service</h2>
+			<p>The Student Success Dashboard runs as a Web Role instance in an Azure Cloud Service. 
+				Create a Cloud Service using the URL domain of your choice in the data center location 
+				that would best serve your user base.</p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/b239da6b53494dfabdf0ff4f1f596d95abddc059/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f436c6f7564536572766963654372656174696f6e2e706e67" alt="CloudServiceCreation" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/CloudServiceCreation.png"></p>
+			
+			<h2>Storage Account</h2>
+			<p>Much like the Azure Cloud Service, create a Storage Account by specifying the URL domain of 
+				your choice. The data center location should be the same as you chose for the Cloud Service in 
+				order to ensure the best performance. Connectivity between services within a data center is 
+				incredibly fast.</p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/bd7070a18eb5c6c9f596b433bedc00a29074e70f/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f53746f726167654163636f756e744372656174696f6e2e706e67" alt="StorageAccountCreation" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/StorageAccountCreation.png"></p>
+			
+			<h2>Database Server</h2>
+			<p>The first step here is to set up the server you want to deploy to in your 
+				Azure subscription. To do this, navigate to the SQL Databases section and click 
+				the Servers tab:</p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/ac3b93e6c84b03b9ac0615f13ca1f4d94c38e94b/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f617a75726544617461626173655365727665722e6a7067" alt="azureDatabaseServer" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/azureDatabaseServer.jpg"></p>
+			<p>Click the Add button on the bottom command panel and enter the administrator 
+				credentials and select the region. Again, the region should match the Cloud 
+				Service to achieve the highest performance. The server name will be created for 
+				you after submitting this information; there is no way to specify a name.</p>
+			<p><i>NOTE</i>: The "SSD" database utilized by the application will be created 
+				automatically for you when running the application, thanks to the use of the 
+				Entity Framework Code-first technology. See <b>Configuration</b> below for information 
+				on setting the application's database connection string.</p>
+			
+			<h2>Access Control Service (ACS)</h2>
+			<p>Next, create the ACS namespace you wish to authenticate against. Enter the namespace 
+				DNS domain name and select the region closest to the majority of your users.</p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/0a33839e1304988ecc2e74c35b9f4c2f819ad247/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f4163734e616d6573706163654372656174696f6e2e706e67" alt="AcsNamespaceCreation" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/AcsNamespaceCreation.png"></p>
+			<p>Select the newly created namespace and click the Manage button. This will open 
+				a new tab to the Access Control Service management portal.</p> 
+			<p>First, add the identity providers you wish to support via the "Identity providers" 
+				tab. By default, ACS allows you to configure authentication through Windows Live ID 
+				(automatically configured), Yahoo!, Google, and Facebook. With Facebook, you must 
+				configure an application within Facebook as well in order for ACS to successfully 
+				broker the authentication request through Facebook.</p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/fd3270a3fe88056dc6bff8f55941b9227d5d09ab/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f4163734964656e7469747950726f76696465724372656174696f6e2e706e67" alt="AcsIdentityProviderCreation" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/AcsIdentityProviderCreation.png"></p>
+			<p>Next click the "Relying party applications" tab to make ACS aware of the Student 
+				Success Dashboard. Click Add and fill in the following settings.</p>
+			<ul>
+				<li><strong>Name</strong> The name of the relying party.  This must be unique, so a 
+					convention might be to use the URL.</li>
+				<li><strong>Realm</strong> The URL of the homepage from which authentication requests will come.</li>
+				<li><strong>Return URL</strong> The URL to which the user will be sent back into the 
+					application after a successful authentication.  For the Student Success Dashboard, 
+					this should be the same as the Realm.</li>
+				<li><strong>Token Lifetime</strong> Generally, you should set this value to beyond the default 
+					10 minutes.  It is important to remember that this is not a sliding expiration so user 
+					activity does not automatically extend this lifetime.</li>
+				<li><strong>Rule groups</strong> For now, just uncheck this option and we'll create the rules 
+					later in this setup guide.</li>
+			</ul>
+			<p>A relying party should be created for both the http and https endpoints of the application.</p>
+			
+			<h4>SendGrid</h4>
+			<p>The last Azure service to setup is SendGrid, a third-party cloud service for handling emails.  
+				The Azure Cloud Service does not have an SMTP server running, so we need an external provider to 
+				send the confirmation emails from within the Student Success Dashboard.  You are free to choose 
+				a different provider, but SendGrid is integrated into the Azure management experience and is free 
+				up to 25,000 emails per month.</p>
+			<p>First, click New in the Azure Management Portal and click the Store option, which is in preview 
+				as of the time of this writing, and may be subject to change slightly.</p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/e391b740d69dcd9969622c2835c87df383f95b4f/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f53656e64477269644372656174696f6e312e706e67" alt="SendGridCreation1" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/SendGridCreation1.png"></p>
+			<p>This will present you with a modal window where you can select and configure the third-party cloud 
+				service.  Find SendGrid in the list and proceed to the next page.  Next, select the plan (start with Free),
+				enter a unique name for your email service, and select the data center region.  </p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/f01144f0087663f56530e2884079d12f6447aa5c/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f53656e64477269644372656174696f6e322e706e67" alt="SendGridCreation2" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/SendGridCreation2.png"></p>
+			<p>Once the service is created you can see it from the Add-ons section of the Azure Management Portal.  
+				Select it and click the Connection Info button to view information necessary to send email using this 
+				service.  You will need this information to complete the <strong>Configuration</strong> defined below.</p>
+
+			<h3>Configuration</h3>
+
+			<h4>StudentSuccessDashboard/Web.config</h4>
+			<p><strong>FederationMetadataLocation</strong></p>
+			<p>Enter the namespace name you wish to authenticate against when running locally into this setting 
+				in configuration/appSettings.</p>
+			<p><strong>Machine Keys</strong></p>
+			<p>Enter the validationKey and decryptionKey attribute values you wish to use for your deployments.  
+				These attributes are found on the configuration/system.web/machineKey element.</p>
+			<p><strong>Trusted Issuer Name</strong></p>
+			<p>Set the Azure ACS namespace name you wish to authenticate against when running locally into the 
+				name attribute of the configuration/system.identityModel/identityConfiguration/securityTokenHandlers
+				/securityTokenHandlerConfiguration/issuerNameRegistry/trustedIssuers/add element.</p>
+			<p><strong>wsFederation Issuer</strong></p>
+			<p>Set the Azure ACS namespace name you wish to authenticate against when running locally into the 
+				issuer attribute of the configuration/system.identityModel.services/federationConfiguration/wsFederation 
+				element.</p>
+			
+			<h4>StudentSuccessDashboard/Web.*.config Transforms</h4>
+			<p>The Web.config file has a Debug and Release transform which modifies the configuration for deployment 
+				environments.  The Web.Debug.config file corresponds to the Staging deployment of the Azure Cloud Service, 
+				while Web.Release.config corresponds to the Production deployment.</p>
+			<p><strong>FederationMetadataLocation</strong></p>
+			<p>Enter the namespace name you wish to authenticate against when running in the Azure Cloud Service 
+				deployment into this setting in configuration/appSettings.</p>
+			<p><strong>Audience URIs</strong></p>
+			<p>Enter the DNS name of Azure Cloud Service deployment into the configuration/system.identityModel/
+				identityConfiguration/audienceUris/add elements.</p>
+			<p><strong>wsFederation Issuer</strong></p>
+			<p>Enter the namespace name you wish to authenticate against when running in the Azure Cloud Service 
+				deployment into the issuer attribute of the configuration/system.identityModel.services/federation
+				Configuration/wsFederation element.  Also, enter a valid realm for the ACS namespace 
+				(it should match one of the audienceUris) into the realm attribute.</p>
+
+			<h4>SSD.Azure/ServiceConfiguration.*.cscfg</h4>
+			<p>There are 3 Azure Cloud Service configuration files that correspond to running Local (emulated), 
+				in Debug (Staging deployment), and Release (Production deployment).  There are a number of 
+				ConfigurationSettings that need to be adjusted to the environment.</p>
+			<p><strong>Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString</strong></p>
+			<p>The connection string to the Azure Storage Account where diagnostic data will be added.
+				NOTE: Local uses the emulated development storage by default and may not need to be changed.</p>
+			<p><strong>Microsoft.WindowsAzure.Plugins.Caching.ConfigStoreConnectionString</strong></p>
+			<p>The connection string to the Azure Storage Account where caching configuration will be stored.
+				NOTE: Local uses the emulated development storage by default and may not need to be changed.</p>
+			<p><strong>AdministratorEmailAddresses</strong></p>
+
+			<p>These are the email addresses that will set a user as an administrator when the email is registered and confirmed.  
+				These settings are important to ensure upon initial install a user has appropriate access to setup the initial user base.</p>
+			<p><strong>AcsNamespace</strong></p>
+			<p>The ACS namespace name that handles authentication requests from this environment.</p>
+			<p><strong>StorageConnectionString</strong></p>
+			<p>The connection string to the Azure Storage Account the application works with for user functionality.
+			NOTE: Local uses the emulated development storage by default and may not need to be changed.</p>
+			<p><strong>DatabaseConnectionString</strong></p>
+			<p>The Data Source server name, User ID, and Password must be set for the Azure Database to 
+				connect to for this environment.<br>
+			NOTE: Local uses a local instance of SQLEXPRESS by default and may not need to be changed.</p>
+			<p><strong>SmtpUserName</strong></p>
+			<p>The username of the SendGrid account that handles the email confirmations.</p>
+			<p><strong>SmtpPassword</strong></p>
+			<p>The password of the SendGrid account that handles the email confirmations.</p>
+			<p><strong>SupportEmailAddress</strong></p>
+			<p>The email address users can send support requests to.  This email address is accessible
+				to users via the Support page.</p>
+			<p><strong>SupportHelpDesk</strong></p>
+			<p>The URL to a support helpdesk to assist users with the application.  This URL is 
+				accessible to users via the Support page.</p>
+
+			<h4>SSD.Azure/Profiles/*.azurePubxml</h4>
+			<p>The publish profiles for the Staging and Production Azure Cloud Service deployments 
+				are maintained separately for the Debug and Release build configurations.  The best 
+				way to set these values is by running the publish wizard from within Visual Studio.</p>
+
+			<h3>Deployment Setup</h3>
+			<p>There are currently 3 existing service configurations in the application, 2 of which are linked to publish profiles, 
+				Debug and Release. If you wish to create more, you can do “Create a Copy” from the Publish dropdown. Settings for 
+				these accounts like the connection string can be modified to match your newly created servers from the Azure project 
+				-&gt; Roles -&gt; SSD and then clicking on the Settings section:</p>
+			<p><img class="img-responsive" src="https://camo.githubusercontent.com/a351b21c0fe44c3699146137f643dfa753782b73/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f617a75726553657474696e67732e6a7067" alt="azureSettings" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/azureSettings.jpg"></p>
+			<p>Additionally, it is suggested that any time you move to Production, or are preparing a Staging environment, that you 
+				create a backup of your production database. Information on how to do that can be found here: 
+				<a href="http://technet.microsoft.com/en-us/library/ms187510.aspx">http://technet.microsoft.com/en-us/library/ms187510.aspx</a></p>
+			
+			<p>Return to the wiki <a href="wikihome.html">Home</a>.</p>
+		</main>
+		
+		<footer>
+			<hr/>
+			&copy; University of Cincinnati ITSC 2014
+		</footer>
+	</section>	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>	
+	
+</body>
+
+</html>

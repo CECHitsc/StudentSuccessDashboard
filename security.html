@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Student Success Dashboard</title>
+	
+	<!--  BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<!-- END BOOTSTRAP -->
+	
+</head>
+<!------------------------------------------------------------------>
+<body>
+	<section>	
+		<header>
+			<!-- NAV BAR -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				  <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SSD</a>
+				  </div>
+				  <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="wikihome.html">Wiki</a></li>
+					  <li><a href="contacts.html">Contacts</a></li>
+					</ul>
+					<!-- DROPBOX -->
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Wiki Nav<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="wikihome.html">Wiki Home</a></li>
+							<li><a href="setup.html">Setup</a></li>
+							<li><a href="getstarted.html">Get Started</a></li>
+							<li><a href="#">Security</a></li>
+							<li><a href="technologies.html">Technologies</a></li>
+							<li><a href="solution.html">Solution</a></li>
+							<li><a href="integration.html">Integration</a></li>
+							<li><a href="automation.html">Automating Tests</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</div>
+		</header>
+		
+		<main class="well well-lg">
+		
+			<h1>Security</h1>
+			<article>
+				<h2>SSL Certification Needs</h2>
+				<p>Student Success Dashboard, like many websites today, uses a SSL Certificate for security purposes 
+					such as login information. The certificates have been getting stored in Applications => 
+					StudentSuccessDashboard => Certificates:</p>
+				<img class="img-responsive" src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/certificate.png"/>
+				<p>The current certificate in the project is nothing more than a test certificate for development 
+					purposes that causes a security exception whenever users go to the website. It will need to be 
+					replaced by your own SSL certificate. A SSL certificate lets users know you are who you say you 
+					are. A valid SSL can be acquired from multiple sources such as VeriSign or Symantec. One other item 
+					of note here is that the SSD Post-build event attaches the certificate to the development versions 
+					of the website:</p>
+				<img class="img-responsive" src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/postBuildCommand.jpg"/>
+				<p>This is done with the command: 
+					“CERTUTIL -importPFX -f -v -p 123456 my $(ProjectDir)Certificates\SiteCertificate.pfx”. 
+					If this command doesn’t execute, then the website will be unable to run locally.</p>
+				<p>Once you’ve installed your certificate, you’ll need to grab the thumbprint for it. 
+					This can be done by grabbing it from the Service Definition in the Azure project. If you 
+					right click the Azure project and go to properties, you’ll see the Certificates tab and 
+					can find it from there:</p>
+				<img class="img-responsive" src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/certificateRole.jpg"/>
+				<p>This thumbprint then needs to be added to the web.config file in 2 places:</p>
+				<img class="img-responsive" src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/thumbprint.jpg"/>
+				<p>Once this is done, the certificate must be uploaded to Azure through the Windows Azure Portal. 
+					Login through the portal and navigate to the Cloud Services tab. Then select the service you want 
+					to upload the certificate to. Lastly, select the Certificates tab followed by clicking the Upload 
+					button at the bottom of the screen to upload it:</p>
+				<img class="img-responsive" src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/azureCert.png"/>
+				<p>You will then need to navigate to the Active Directory section and go to the Azure Control Namespaces 
+					tab. This is needed for so the certificate can sign ACS tokens when users use the application. From 
+					there, select which namespace you want to upload the certificate to and click the Manage button. 
+					This opens an Azure Control Service page for that namespace. Go to the Certificates and Keys section 
+					and from there you can add your certificate to the namespace:</p>
+				<img class="img-responsive" src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/namespaceCert.jpg"/>
+			</article>
+			
+			<article>
+				<h2>Machine Key</h2>
+				<p>For the purposes of this application, you will need to create a machine key and place it in the 
+					web.config file under the tag. Typically a machine key looks something like this:</p>
+				<span>&lt;machineKey validation=&quot;HMACSHA256&quot; validationKey=&quot;…&quot; decryption=&quot;AES&quot; decryptionKey=&quot;…&quot;/\&gt;</span>
+				<p>The validation and decryption keys can be auto-generated through your own tool or something online. 
+					It merely needs to be a complex set of random characters that will be hard to hack through. This 
+					application uses the machineKey as a signature on the session token to help make it tamper-proof.</p>
+			</article>
+			
+			<article>
+				<h2>Strong Name Keys</h2>
+				<p>In this application we have used strong name keys for our assemblies and it’s suggested that you would 
+					want to as well. Strong Name Keys provide a way to uniquely identify each assembly and avoid “DLL Hell” 
+					as well as potentially keeping hackers from overriding your assemblies. To accomplish this, first 
+					right-click on the project you’re going to apply the SNK to and select properties. In the properties 
+					window, select the “Signing” section and click the checkbox next to “Sign the assembly”. You can create 
+					a new SNK or use an old one from the “Choose a strong name key file” dropdown:</p>
+				<img class="img-responsive" src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/snk.jpg"/>
+				<p>Once you’ve done that, any InternalsVisibleTo you’ve made referencing that project will need the 
+					PublicKeyToken from that SNK. You can retrieve this from the command line using a command similar to 
+					“sn.exe -T assembly.dll”. Otherwise, those projects will no longer be able to get the internals from that 
+					assembly. Lastly, the PublicKeyToken you’ve retrieved will also need to be added to the WsFederationAuthenticationModule 
+					tag in the web.config file. It should look like:</p>
+				<p>&lt;add name="WsFederationAuthenticationModule" type="Security.AuthenticationModule, SSD.Security, Version=1.0.0.0, 
+					Culture=neutral, PublicKeyToken="…" preCondition="managedHandler" /\&gt;</p>
+				<p>Return to the wiki <a href="wikihome.html">Home</a>.</p>
+		</main>
+		
+		<footer>
+			<hr/>
+			&copy; University of Cincinnati ITSC 2014
+		</footer>
+	</section>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+	
+</body>
+
+</html>
