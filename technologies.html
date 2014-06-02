@@ -2,22 +2,22 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<link rel="shortcut icon" href="favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Student Success Dashboard</title>
 	
 	<!--  BOOTSTRAP CSS -->
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" id="main" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/navbar.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/bootstrap-responsive.css"/>
+	<script src="js/respond.min.js"></script>
 	<!-- END BOOTSTRAP -->
 	
 </head>
 <!------------------------------------------------------------------>
 <body>
-	<section>	
+	<div class="container">	
 		<header>
 			<!-- NAV BAR -->
 			<div class="navbar navbar-default" role="navigation">
@@ -150,13 +150,19 @@
 			</article>
 			<article>
 				<h2><a href='http://azure.microsoft.com/en-us/documentation/articles/storage-whatis-account/'>Azure Storage Accounts</a></h2>
-				<h3>Blob</h3>
-				<p>In the context of the Student Success Dashboard, Blob storage is being used primarily as a data store 
-					for file processing. Because Azure is a distributed system we can’t rely on using the file system since 
-					we can’t ensure that a user will be working on the same web role instance through their entire session. 
-					Azure Blob Storage is a distributed data store accessible across all web role instances.</p>
-				<h3>Table</h3>
-				<p>The Windows Azure Diagnostics module is configured, by default, to output tracing information to table storage.</p>				
+				<div class="row">
+					<div class="col-sm-8">
+						<h3>Blob</h3>
+						<p>In the context of the Student Success Dashboard, Blob storage is being used primarily as a data store 
+							for file processing. Because Azure is a distributed system we can’t rely on using the file system since 
+							we can’t ensure that a user will be working on the same web role instance through their entire session. 
+							Azure Blob Storage is a distributed data store accessible across all web role instances.</p>
+					</div>
+					<div class="col-sm-4">
+						<h3>Table</h3>
+						<p>The Windows Azure Diagnostics module is configured, by default, to output tracing information to table storage.</p>				
+					</div>
+				</div>
 			</article>
 			<article>
 				<h2><a href='http://azure.microsoft.com/en-us/documentation/articles/active-directory-dotnet-how-to-use-access-control/'>Azure Access Control Service</a></h2>
@@ -168,14 +174,13 @@
 		</main>
 		
 		<footer>
-			<hr/>
-			&copy; University of Cincinnati ITSC 2014
+			<p>&nbsp&nbsp&nbsp&copy; University of Cincinnati ITSC 2014</p>
 		</footer>
-	</section>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>	
+	</div> <!-- CLOSING CONTAINER -->
 </body>
 
 </html>

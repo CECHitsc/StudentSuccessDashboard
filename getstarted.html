@@ -2,21 +2,22 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<link rel="shortcut icon" href="favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Student Success Dashboard</title>
 	
 	<!--  BOOTSTRAP CSS -->
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/navbar.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/bootstrap-responsive.css"/>
+	<script src="js/respond.min.js"></script>
 	<!-- END BOOTSTRAP -->
 	
 </head>
 <!------------------------------------------------------------------>
 <body>
-	<section>	
+	<div class="container">	
 		<header>
 			<!-- NAV BAR -->
 			<div class="navbar navbar-default" role="navigation">
@@ -117,11 +118,11 @@
 				<ul>
 					<li>Run the solution with the SSD.Azure project as the Start Up project. Because you are not logged in, you will land on 
 						the Login page, which is the main landing page for unauthenticated users</li>
-					<img class="img-responsive" src="https://camo.githubusercontent.com/73ba6abdcc5969a14b0aba67a3d7add118d15ae0/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f686f6d65706167652e6a7067"/>
 					<li>Log in using the identity provider of your choice and you will be redirected to the Single Sign-On log in experience 
 						for that identity provider. Note that the identity provider buttons are created dynamically based on the configuration 
 						of the relying party associated with the local development realm. Each identity provider associated with that relying 
 						party gets a button.</li>
+					<img class="img-responsive" src="https://camo.githubusercontent.com/73ba6abdcc5969a14b0aba67a3d7add118d15ae0/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f686f6d65706167652e6a7067"/>
 					<li>Upon first log in you will be greeted by a profile registration page. The application requires the creation of a valid 
 						User Profile. This includes a valid email address. Your account will not be activated until you confirm that your email
 						address is indeed valid. NOTE: The Gmail and Yahoo! identity providers can deliver the display name and email address 
@@ -143,14 +144,14 @@
 		</main>
 		
 		<footer>
-			<hr/>
-			&copy; University of Cincinnati ITSC 2014
-		</footer>
-	</section>	
+			<p>&nbsp&nbsp&nbsp&copy; University of Cincinnati ITSC 2014</p>
+		</footer>	
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>	
 	
+	</div> <!-- CLOSING CONTAINER -->
 </body>
 
 </html>

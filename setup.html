@@ -2,21 +2,22 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" id="main" href="main.css"/>
+	<link rel="shortcut icon" href="favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Student Success Dashboard</title>
 	
 	<!--  BOOTSTRAP CSS -->
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="bootstrap-theme.min.css"/>
-	<link rel="stylesheet" type="text/css" id="main" href="navbar.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/navbar.css"/>
+	<link rel="stylesheet" type="text/css" id="main" href="css/bootstrap-responsive.css"/>
+	<script src="js/respond.min.js"></script>
 	<!-- END BOOTSTRAP -->
 	
 </head>
 <!------------------------------------------------------------------>
 <body>
-	<section>	
+	<div class="container">	
 		<header>
 			<!-- NAV BAR -->
 			<div class="navbar navbar-default" role="navigation">
@@ -34,7 +35,7 @@
 					<ul class="nav navbar-nav">
 					  <li><a href="index.html">Home</a></li>
 					  <li class="active"><a href="wikihome.html">Wiki</a></li>
-					  <li><a href="contacts.html">Contacts</a></li>
+					  <li><a href="contacts.html">About/Contact</a></li>
 					</ul>
 					<!-- DROPBOX -->
 					<ul class="nav navbar-nav navbar-right">
@@ -136,18 +137,25 @@
 			</ul>
 			<p>A relying party should be created for both the http and https endpoints of the application.</p>
 			
-			<h4>SendGrid</h4>
-			<p>The last Azure service to setup is SendGrid, a third-party cloud service for handling emails.  
-				The Azure Cloud Service does not have an SMTP server running, so we need an external provider to 
-				send the confirmation emails from within the Student Success Dashboard.  You are free to choose 
-				a different provider, but SendGrid is integrated into the Azure management experience and is free 
-				up to 25,000 emails per month.</p>
-			<p>First, click New in the Azure Management Portal and click the Store option, which is in preview 
-				as of the time of this writing, and may be subject to change slightly.</p>
-			<p><img class="img-responsive" src="https://camo.githubusercontent.com/e391b740d69dcd9969622c2835c87df383f95b4f/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f53656e64477269644372656174696f6e312e706e67" alt="SendGridCreation1" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/SendGridCreation1.png"></p>
-			<p>This will present you with a modal window where you can select and configure the third-party cloud 
-				service.  Find SendGrid in the list and proceed to the next page.  Next, select the plan (start with Free),
-				enter a unique name for your email service, and select the data center region.  </p>
+			<div class="row">
+				<div class="col-sm-6"
+				<h4>SendGrid</h4>
+				<p>The last Azure service to setup is SendGrid, a third-party cloud service for handling emails.  
+					The Azure Cloud Service does not have an SMTP server running, so we need an external provider to 
+					send the confirmation emails from within the Student Success Dashboard.  You are free to choose 
+					a different provider, but SendGrid is integrated into the Azure management experience and is free 
+					up to 25,000 emails per month.</p>
+				<p>First, click New in the Azure Management Portal and click the Store option, which is in preview 
+					as of the time of this writing, and may be subject to change slightly.</p>
+				</div>
+				<div class="col-sm-6">
+				<p><img class="img-responsive" src="https://camo.githubusercontent.com/e391b740d69dcd9969622c2835c87df383f95b4f/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f53656e64477269644372656174696f6e312e706e67" alt="SendGridCreation1" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/SendGridCreation1.png"></p>
+				</div>
+			</div>
+				<p>This will present you with a modal window where you can select and configure the third-party cloud 
+					service.  Find SendGrid in the list and proceed to the next page.  Next, select the plan (start with Free),
+					enter a unique name for your email service, and select the data center region.  </p>
+			
 			<p><img class="img-responsive" src="https://camo.githubusercontent.com/f01144f0087663f56530e2884079d12f6447aa5c/68747470733a2f2f7261772e6769746875622e636f6d2f43454348697473632f53747564656e745375636365737344617368626f6172642f6d61737465722f77696b692f53656e64477269644372656174696f6e322e706e67" alt="SendGridCreation2" data-canonical-src="https://raw.github.com/CECHitsc/StudentSuccessDashboard/master/wiki/SendGridCreation2.png"></p>
 			<p>Once the service is created you can see it from the Add-ons section of the Azure Management Portal.  
 				Select it and click the Connection Info button to view information necessary to send email using this 
@@ -240,14 +248,14 @@
 		</main>
 		
 		<footer>
-			<hr/>
-			&copy; University of Cincinnati ITSC 2014
+			<p>&nbsp&nbsp&nbsp&copy; University of Cincinnati ITSC 2014</p>
 		</footer>
-	</section>	
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>	
 	
+	</div><!-- CLOSING CONTAINER -->
 </body>
 
 </html>
