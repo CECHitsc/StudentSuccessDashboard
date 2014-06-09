@@ -101,11 +101,6 @@ img.pull-right {
 /** END NAVBAR **/
 
 
-.row.contact {
-	margin-top: 3em;
-	margin-bottom: 6em;
-}
-
 .row {
 	padding-left: 1em;
 	padding-right: 1em;
@@ -122,3 +117,7 @@ img.pull-right {
 	background-image:url('../images/campus.jpg');
 	background-repeat: no-repeat;
 }	
+
+.well {
+	background-color: #fffcfc;
+}
