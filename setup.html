@@ -136,10 +136,14 @@
 					later in this setup guide.</li>
 			</ul>
 			<p>A relying party should be created for both the http and https endpoints of the application.</p>
+			<p>Finally, go to the "Rule groups" tab and click Add. Enter "Student Success Dashboard rule 
+				group" and click Save. Select all relying parties. Click the Generate button and generate 
+				the default rules for each identity provider. Save again to complete setup of the ACS 
+				namespace.<p>
 			
 			<div class="row">
-				<div class="col-sm-6"
-				<h4>SendGrid</h4>
+				<div class="col-sm-6">
+				<h3>SendGrid</h3>
 				<p>The last Azure service to setup is SendGrid, a third-party cloud service for handling emails.  
 					The Azure Cloud Service does not have an SMTP server running, so we need an external provider to 
 					send the confirmation emails from within the Student Success Dashboard.  You are free to choose 
